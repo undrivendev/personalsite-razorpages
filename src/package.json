@@ -1,0 +1,9 @@
+{
+  "name": "lucadallavalle-personalsite",
+  "version": "0.1.0",
+  "description": "personal site",
+  "main": "index.js",
+  "repository": "https://gitlab.com/ludaval/personalsite.git",
+  "author": "Luca Dalla Valle",
+  "license": "© 2019 Luca Dalla Valle"
+}
