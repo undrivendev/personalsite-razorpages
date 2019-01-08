@@ -3,3 +3,6 @@ services:
     personalsite:
         image: registry.gitlab.com/ludaval/personalsite/master:latest
         restart: unless-stopped
+        ports:
+            - '8080:80'
+
