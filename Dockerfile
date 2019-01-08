@@ -1,5 +1,4 @@
 FROM nginx 
 
-RUN ls -la
-WORKDIR /src
+WORKDIR /src/src
 COPY . /usr/share/nginx/html
