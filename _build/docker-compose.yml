@@ -1,0 +1,5 @@
+version: '3'
+services:
+    personalsite:
+        image: registry.gitlab.com/ludaval/personalsite/master:latest
+        restart: unless-stopped
