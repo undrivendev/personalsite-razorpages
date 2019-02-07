@@ -13,6 +13,8 @@ namespace Ldv.PersonalSite
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvcCore();
+            services.AddApplicationInsightsTelemetry();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -22,7 +24,7 @@ namespace Ldv.PersonalSite
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseFileServer();
+            app.UseMvc();
         }
     }
 }

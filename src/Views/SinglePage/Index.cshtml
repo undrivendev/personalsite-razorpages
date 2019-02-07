@@ -1,8 +1,9 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -13,20 +14,20 @@
 
     <title>Luca Dalla Valle - Developer resume</title>
 
-    <!-- Required BS4 meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/site.css">
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 
 <body class="site-main-text-color pt-3">
     <main role="main">
         <header>
-            <h1 class="site-other-text-color text-center">Profile</h2>
-                <p class="lead text-center">C# and web developer</p>
-                <hr style="max-width: 36%">
+            <h1 class="site-other-text-color text-center">Profile</h1>
+            <p class="lead text-center">C# and web developer</p>
+            <hr style="max-width: 36%">
         </header>
         <div class="row">
             <div class="col">
@@ -82,10 +83,11 @@
             <img class="site-svg-social" src="img/github-square-brands.svg" alt="Github logo">
         </a>
     </footer>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/popper/popper.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/site.js"></script>
 </body>
-<script src="lib/jquery/jquery.min.js"></script>
-<script src="lib/popper/popper.min.js"></script>
-<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="js/site.js"></script>
+
 
 </html>
