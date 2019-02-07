@@ -13,7 +13,7 @@ namespace Ldv.PersonalSite
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore();
+            services.AddMvc();
             services.AddApplicationInsightsTelemetry();
         }
 
@@ -23,8 +23,11 @@ namespace Ldv.PersonalSite
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=SinglePage}/{action=Index}");
+            });
         }
     }
 }
