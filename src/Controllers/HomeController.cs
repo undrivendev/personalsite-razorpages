@@ -2,7 +2,7 @@
 
 namespace Ldv.PersonalSite.Controllers
 {
-    public class SinglePageController : Controller
+    public class HomeController : Controller
     {
         [HttpGet]
         public IActionResult Index() => View();

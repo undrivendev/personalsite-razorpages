@@ -24,10 +24,7 @@ namespace Ldv.PersonalSite
                 app.UseDeveloperExceptionPage();
             }
             app.UseStaticFiles();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute("default", "{controller=SinglePage}/{action=Index}");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
