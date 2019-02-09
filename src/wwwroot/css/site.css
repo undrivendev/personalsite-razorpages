@@ -2,35 +2,41 @@ html {
     background-color: #EEEEEE;
 }
 
-.site-main-text-color {
+.ldv-main-text-color {
     color: #393E46;
 }
 
-.site-other-text-color {
+.ldv-other-text-color {
     color: #00ADB5;
 }
 
-.site-section-background1 {
+.ldv-section-background1 {
     background-color: #FFFFFF;
 }
 
-.site-section-background2 {
+.ldv-section-background2 {
     background-color: #EEEEEE;
 }
 
+.ldv-section {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 #cv-left {
-  border-right: 1px solid rgba(0,0,0,.1);
+    border-right: 1px solid rgba(0,0,0,.1);
 }
 
 html {
     position: relative;
     min-height: 100%;
-  }
-  body {
-    margin-bottom: 60px; /* Margin bottom by footer height */
-  }
+}
 
-  .footer {
+body {
+    margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
+.footer {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -38,23 +44,20 @@ html {
     line-height: 60px; /* Vertically center the text there */
     background-color: #222831;
     color: #EEEEEE;
-  }
-  
-  
-  /* Custom page CSS
+}
+
+/* Custom page CSS
   -------------------------------------------------- */
-  /* Not required for template or sticky footer method. */
-  
-  .container {
-    width: auto;
+/* Not required for template or sticky footer method. */
+
+.container {
     max-width: 680px;
-    padding: 0 15px;
-  }
+}
 
-  .site-svg-pdf {
-    height: 120px;
-  }
-
-  .site-svg-social {
+.ldv-svg-social {
     height: 30px;
-  }
+}
+
+.ldv-svg-pdf {
+    height: 120px;
+}
