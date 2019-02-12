@@ -7,17 +7,17 @@
     <link rel="apple-touch-icon" sizes="180x180" href="~/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="~/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="~/favicon-16x16.png">
-    <link rel="manifest" href="~/site.webmanifest">
+    <link rel="manifest" href="~/site.webmanifest.json">
     <link rel="mask-icon" href="~/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Luca Dalla Valle - Developer resume</title>
+    <title>Luca Dalla Valle - Developer</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="~/css/site.css">
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
@@ -26,17 +26,20 @@
     <main role="main">
         @RenderBody()
     </main>
-    <footer class="footer text-center">
-        <a href="https://www.linkedin.com/in/luca-dallavalle" target="_blank">
-            <img class="ldv-svg-social" src="~/img/linkedin-brands.svg" alt="Linkedin logo">
-        </a>
-        <a href="https://github.com/ludaval" target="_blank">
-            <img class="ldv-svg-social" src="~/img/github-square-brands.svg" alt="Github logo">
-        </a>
-    </footer>
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/popper/popper.min.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    @if (!(ViewBag.HideFooter ?? false))
+    {
+        <footer class="footer text-center">
+            <a href="https://www.linkedin.com/in/luca-dallavalle" target="_blank">
+                <img class="ldv-svg-social" src="~/img/linkedin-brands.svg" alt="Linkedin logo">
+            </a>
+            <a href="https://github.com/ludaval" target="_blank">
+                <img class="ldv-svg-social" src="~/img/github-square-brands.svg" alt="Github logo">
+            </a>
+        </footer>
+    }
+    <script src="~/lib/jquery/jquery.slim.min.js"></script>
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
     <script src="~/js/site.js"></script>
 </body>
 

@@ -2,31 +2,6 @@ html {
     background-color: #EEEEEE;
 }
 
-.ldv-main-text-color {
-    color: #393E46;
-}
-
-.ldv-other-text-color {
-    color: #00ADB5;
-}
-
-.ldv-section-background1 {
-    background-color: #FFFFFF;
-}
-
-.ldv-section-background2 {
-    background-color: #EEEEEE;
-}
-
-.ldv-section {
-    padding-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-#cv-left {
-    border-right: 1px solid rgba(0,0,0,.1);
-}
-
 html {
     position: relative;
     min-height: 100%;
@@ -60,4 +35,48 @@ body {
 
 .ldv-svg-pdf {
     height: 120px;
+}
+
+.ldv-main-text-color {
+    color: #393E46;
+}
+
+.ldv-other-text-color {
+    color: #00ADB5;
+}
+
+.ldv-section-background1 {
+    background-color: #FFFFFF;
+}
+
+.ldv-section-background2 {
+    background-color: #EEEEEE;
+}
+
+.ldv-horizontal-divider {
+    max-width: 36%;
+}
+
+.ldv-section {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+    .ldv-section:last-of-type {
+        min-height: 80vh;
+    }
+
+.jumbotron {
+    background: url("../img/jumbotron-background.jpg") no-repeat fixed center;
+    background-size: 100%;
+}
+
+    .jumbotron .container {
+        position: relative;
+        top: 28%;
+    }
+
+#ldv-jumbotron {
+    margin-bottom: 0;
+    height: 100vh;
 }

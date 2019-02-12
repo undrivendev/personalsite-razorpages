@@ -23,6 +23,13 @@ namespace Ldv.PersonalSite
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error/500");
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
