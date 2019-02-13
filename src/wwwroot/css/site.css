@@ -68,7 +68,6 @@ body {
 
 .jumbotron {
     background: url("../img/jumbotron-background.jpg") no-repeat fixed center;
-    background-size: 100%;
 }
 
     .jumbotron .container {
