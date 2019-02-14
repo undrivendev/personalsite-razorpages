@@ -59,7 +59,7 @@ body {
 
 .ldv-section {
     padding-top: 1rem;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
     .ldv-section:last-of-type {
@@ -68,6 +68,7 @@ body {
 
 .jumbotron {
     background: url("../img/jumbotron-background.jpg") no-repeat fixed center;
+    background-size: cover
 }
 
     .jumbotron .container {
