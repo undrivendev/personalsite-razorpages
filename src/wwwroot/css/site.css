@@ -67,6 +67,7 @@ body {
     }
 
 .jumbotron {
+    position: relative;
     background: url("../img/jumbotron-background.jpg") no-repeat fixed center;
     background-size: cover
 }
@@ -83,14 +84,14 @@ body {
 
 /*region ARROW*/
 
-a {
-    color: white;
-    text-decoration: none;
+#ldv-arrow-container {
+    position: absolute;
+    bottom: 0;
 }
 
-.ldv-arrow {
-    text-align: center;
-    margin: 8% 0;
+.ldv-arrow a {
+    color: #393E46;
+    text-decoration: none;
 }
 
 .ldv-bounce {
