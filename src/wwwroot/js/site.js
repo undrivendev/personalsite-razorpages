@@ -1,3 +1,4 @@
+let isArrowVisible = true;
 $(function () {
     $("#ldv-arrow-container a").click(function (event) {
         event.preventDefault();
@@ -9,9 +10,11 @@ $(function () {
     });
 
     $(window).scroll(function () {
-        if ($(window).scrollTop() === 0) {
+        if ($(window).scrollTop() === 0 && !isArrowVisible) {
+            isArrowVisible = true;
             $('#ldv-arrow-container').show();
-        } else {
+        } else if (isArrowVisible) {
+            isArrowVisible = false;
             $('#ldv-arrow-container').fadeOut();
         }
     });
