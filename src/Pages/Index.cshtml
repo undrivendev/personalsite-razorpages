@@ -1,0 +1,101 @@
+@page
+@using Ldv.PersonalSite;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="~/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon-16x16.png">
+    <link rel="manifest" href="~/site.webmanifest.json">
+    <link rel="mask-icon" href="~/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Luca Dalla Valle - Developer</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="~/css/site.css">
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+
+<body class="ldv-main-text-color">
+    <main role="main">
+        <div class="jumbotron jumbotron-fluid text-center" id="ldv-jumbotron">
+            <div class="container">
+                <h1 class="display-4">Luca Dalla Valle</h1>
+                <hr class="ldv-horizontal-divider">
+                <p class="lead">Hi there.</p>
+            </div>
+            <div class="container-fluid text-center" id="ldv-arrow-container">
+                <div class="ldv-arrow ldv-bounce">
+                    <a class="fas fa-arrow-down fa-2x" href="javascript:void(0)"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ldv-section">
+            <header>
+                <h2 class="ldv-other-text-color text-center">Profile</h2>
+                <p class="lead text-center">C# and web developer</p>
+                <hr class="ldv-horizontal-divider">
+            </header>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="ldv-other-text-color">About</h5>
+                        I'm a full stack developer. I particularly love C# and the .NET ecosystem.
+                    </div>
+                    <div class="col text-center">
+                        <img src="~/img/ldv.png" height="150px">
+                    </div>
+                    <div class="col">
+                        <h5 class="ldv-other-text-color">Details</h5>
+                        <p>
+                            <strong>Name: </strong>Luca Dalla Valle<br>
+                            <strong>Location: </strong>Padua, Italy<br>
+                            <strong>Age: </strong>@ViewHelpers.GetAge(new DateTime(1991, 4, 9))<br>
+                            <a href="mailto:luca@lucadallavalle.com">Contact</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ldv-horizontal-divider">
+        <div class="ldv-section">
+
+            <div class="container text-center">
+                <h3>To Be Continued...</h3>
+                <p class="lead"><i>I'm not finished yet</i></p>
+            </div>
+        </div>
+        <hr class="ldv-horizontal-divider">
+        <div class="ldv-section">
+        </div>
+    </main>
+
+    <footer class="footer text-center">
+        <a href="https://www.linkedin.com/in/luca-dallavalle" target="_blank">
+            <img class="ldv-svg-social" src="~/img/linkedin-brands.svg" alt="Linkedin logo">
+        </a>
+        <a href="https://github.com/ludaval" target="_blank">
+            <img class="ldv-svg-social" src="~/img/github-square-brands.svg" alt="Github logo">
+        </a>
+    </footer>
+    
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+
+
+</html>
