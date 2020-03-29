@@ -1,6 +1,9 @@
 using System;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using Nuke.Common;
+using Nuke.Common.CI;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.ProjectModel;
@@ -23,8 +26,7 @@ class Build : NukeBuild
     ///   - JetBrains Rider            https://nuke.build/rider
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
-
-    public static int Main () => Execute<Build>(x => x.Compile);
+    public static int Main() => Execute<Build>(x => x.Compile);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -35,12 +37,16 @@ class Build : NukeBuild
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath OutputDirectory => RootDirectory / "output";
+    AbsolutePath PublishDirectory => OutputDirectory / "publish";
+    AbsolutePath ArtifactsDirectory => OutputDirectory / "artifacts";
+
+    string[] ProjectNames => new string[] {"Ldv.PersonalSite"};
 
     Target Clean => _ => _
         .Before(Restore)
         .Executes(() =>
         {
-            SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
+            SourceDirectory.GlobDirectories("**/bin", "**/obj", "output").ForEach(DeleteDirectory);
             EnsureCleanDirectory(OutputDirectory);
         });
 
@@ -60,17 +66,44 @@ class Build : NukeBuild
                 .SetConfiguration(Configuration)
                 .SetAssemblyVersion(GitVersion.AssemblySemVer)
                 .SetFileVersion(GitVersion.AssemblySemFileVer)
-                .SetInformationalVersion(GitVersion.InformationalVersion)
+                .SetInformationalVersion(GitVersion.MajorMinorPatch)
                 .EnableNoRestore());
         });
 
-     Target Package => _ => _
-        .DependsOn(Restore)
+    Target Publish => _ => _
+        .DependsOn(Clean)
         .Executes(() =>
         {
-            DotNetPublish(_ => _
-            .SetProject(Solution)
-            .SetOutput(OutputDirectory));
+            foreach (var ProjectName in ProjectNames)
+            {
+                var project = Solution.GetProject(ProjectName);
+                DotNetPublish(_ => _
+                    .SetOutput(PublishDirectory / ProjectName)
+                    .SetProject(project)
+                    .SetConfiguration(Configuration)
+                    .SetAssemblyVersion(GitVersion.AssemblySemVer)
+                    .SetFileVersion(GitVersion.AssemblySemFileVer)
+                    .SetInformationalVersion(GitVersion.MajorMinorPatch)
+                    .EnableNoRestore());
+                var dockerfiles = Directory.GetFiles(project.Directory, "Dockerfile*");
+                foreach (var f in dockerfiles)
+                {
+                    File.Copy(f, Path.Combine(PublishDirectory / ProjectName, new FileInfo(f).Name));
+                }
+            }
         });
 
+    Target Package => _ => _
+        .DependsOn(Publish)
+        .Produces(ProjectNames
+            .Select((ProjectName) => (ArtifactsDirectory / ProjectName / $"{ProjectName}*.zip").ToString()).ToArray())
+        .Executes(() =>
+        {
+            foreach (var ProjectName in ProjectNames)
+            {
+                Directory.CreateDirectory(ArtifactsDirectory / ProjectName);
+                ZipFile.CreateFromDirectory(PublishDirectory / ProjectName,
+                    ArtifactsDirectory / ProjectName / $"{ProjectName}-{GitVersion.MajorMinorPatch}.zip");
+            }
+        });
 }
