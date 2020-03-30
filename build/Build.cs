@@ -71,7 +71,7 @@ class Build : NukeBuild
         });
 
     Target Publish => _ => _
-        .DependsOn(Clean)
+        .DependsOn(Clean, Restore)
         .Executes(() =>
         {
             foreach (var ProjectName in ProjectNames)
