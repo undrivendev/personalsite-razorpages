@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using _build;
+using ICSharpCode.SharpZipLib.GZip;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
@@ -96,14 +98,16 @@ class Build : NukeBuild
     Target Package => _ => _
         .DependsOn(Publish)
         .Produces(ProjectNames
-            .Select((ProjectName) => (ArtifactsDirectory / ProjectName / $"{ProjectName}*.zip").ToString()).ToArray())
+            .Select((ProjectName) => (ArtifactsDirectory / ProjectName / $"{ProjectName}*.tar.gz").ToString()).ToArray())
         .Executes(() =>
         {
             foreach (var ProjectName in ProjectNames)
             {
                 Directory.CreateDirectory(ArtifactsDirectory / ProjectName);
-                ZipFile.CreateFromDirectory(PublishDirectory / ProjectName,
-                    ArtifactsDirectory / ProjectName / $"{ProjectName}-{GitVersion.MajorMinorPatch}.zip");
+                Utils.CreateTarGz(PublishDirectory / ProjectName, ArtifactsDirectory / ProjectName / $"{ProjectName}-{GitVersion.MajorMinorPatch}.tar.gz");
             }
         });
+
+    
 }
+
