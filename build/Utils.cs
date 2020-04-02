@@ -11,18 +11,19 @@ namespace _build
     public static class Utils
     {
         //  example: CreateTarGZ(@"c:\temp\gzip-test.tar.gz", @"c:\data");
-        public static async Task CreateTarGz(string sourceDirectory, string tgzFilename)
+        public static void CreateTarGz(string sourceDirectory, string tgzFilename, string archiveRootFolderName)
         {
             var dir = new DirectoryInfo(sourceDirectory);
 
-            await using var fS = File.OpenWrite(tgzFilename);
-            await using var gzS = new GZipOutputStream(fS);
+            using var fS = File.OpenWrite(tgzFilename);
+            using var gzS = new GZipOutputStream(fS);
             using var tarArchive = TarArchive.CreateOutputTarArchive(gzS);
 
-            AddDirectoryFilesRecursivelyToTar(dir, tarArchive, dir.Name);
+            AddDirectoryFilesRecursivelyToTar(dir, tarArchive, archiveRootFolderName);
         }
 
-        private static void AddDirectoryFilesRecursivelyToTar(DirectoryInfo dir, TarArchive tarArchive, string currentFolderPath)
+        private static void AddDirectoryFilesRecursivelyToTar(DirectoryInfo dir, TarArchive tarArchive,
+            string currentFolderPath)
         {
             // Write each file to the tar.
             var files = dir.GetFiles();
@@ -30,7 +31,7 @@ namespace _build
             {
                 var tarEntry = TarEntry.CreateEntryFromFile(f.FullName);
                 tarEntry.Name = Path.Combine(currentFolderPath, f.Name);
-                tarArchive.WriteEntry(tarEntry, true);
+                tarArchive.WriteEntry(tarEntry, false);
             }
 
             var childDirs = dir.GetDirectories();

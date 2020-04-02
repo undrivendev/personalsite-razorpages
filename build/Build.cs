@@ -104,7 +104,10 @@ class Build : NukeBuild
             foreach (var ProjectName in ProjectNames)
             {
                 Directory.CreateDirectory(ArtifactsDirectory / ProjectName);
-                Utils.CreateTarGz(PublishDirectory / ProjectName, ArtifactsDirectory / ProjectName / $"{ProjectName}-{GitVersion.MajorMinorPatch}.tar.gz");
+                Utils.CreateTarGz(
+                    PublishDirectory / ProjectName, 
+                    ArtifactsDirectory / ProjectName / $"{ProjectName}-{GitVersion.MajorMinorPatch}.tar.gz", 
+                    $"{ProjectName}-{GitVersion.MajorMinorPatch}");
             }
         });
 
