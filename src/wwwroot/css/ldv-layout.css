@@ -21,6 +21,12 @@ body {
     color: #EEEEEE;
 }
 
+.footer .ldv-footer-icon {
+    color: #EEEEEE;
+    font-size: 30px;
+    vertical-align: middle;
+}
+
 /* Custom page CSS
   -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
@@ -45,14 +51,6 @@ body {
     color: #00ADB5;
 }
 
-.ldv-section-background1 {
-    background-color: #FFFFFF;
-}
-
-.ldv-section-background2 {
-    background-color: #EEEEEE;
-}
-
 .ldv-horizontal-divider {
     max-width: 36%;
 }
@@ -62,9 +60,9 @@ body {
     padding-bottom: 1rem;
 }
 
-    .ldv-section:last-of-type {
-        min-height: 80vh;
-    }
+.ldv-section:nth-child(even){
+    background-color: #EEEEEE;
+}
 
 .jumbotron {
     position: relative;
@@ -72,10 +70,10 @@ body {
     background-size: cover
 }
 
-    .jumbotron .container {
-        position: relative;
-        top: 28%;
-    }
+.jumbotron .container {
+    position: relative;
+    top: 28%;
+}
 
 #ldv-jumbotron {
     margin-bottom: 0;
