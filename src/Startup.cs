@@ -36,8 +36,8 @@ namespace Ldv.PersonalSite
             }
             else
             {
-                app.UseExceptionHandler("/Error500");
-                // app.UseStatusCodePagesWithReExecute("/StatusCode","?code={0}");;
+                app.UseExceptionHandler("/Error/500");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");;
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }
