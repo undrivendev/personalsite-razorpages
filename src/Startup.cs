@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation; 
 
 namespace Ldv.PersonalSite
 {
@@ -25,7 +26,14 @@ namespace Ldv.PersonalSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationInsightsTelemetry(_configuration);
-            services.AddRazorPages();
+            if (_environment.IsDevelopment())
+            {
+                services.AddRazorPages().AddRazorRuntimeCompilation();
+            }
+            else
+            {
+                services.AddRazorPages();
+            }
         }
 
         public void Configure(IApplicationBuilder app)
@@ -37,7 +45,7 @@ namespace Ldv.PersonalSite
             else
             {
                 app.UseExceptionHandler("/Error/500");
-                // app.UseStatusCodePagesWithReExecute("/Error/{0}");;
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");;
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }

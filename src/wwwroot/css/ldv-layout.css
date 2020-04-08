@@ -31,7 +31,7 @@ body {
   -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-.container {
+#ldv-section-profile .container {
     max-width: 680px;
 }
 
