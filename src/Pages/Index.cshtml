@@ -1,4 +1,5 @@
 @page
+@model IndexModel
 @{
     ViewData["Title"] = "Luca Dalla Valle - Developer";
 }
@@ -16,6 +17,22 @@
             age--;
         }
         return age;
+    }
+
+    string GetExperiencePeriodString(DateTime from, DateTime? to)
+    {
+        var realTo = to ?? DateTime.Now;
+
+        var currentDate = from;
+        var m = 0;
+        while (currentDate <= realTo)
+        {
+            m++;
+            currentDate = currentDate.AddMonths(1);
+        }
+
+        var tsFormatted = m >= 12 ? $"{m / 12} Year{(m / 12 == 1 ? "" : "s")}{(m == 12 ? "" : $" {m % 12} Month{(m % 12 == 1 ? "" : "s")}")}" : $"{m} Month{(m == 1 ? "" : "s")}";
+        return $"{from:Y} - {(!to.HasValue ? "Present" : to.Value.ToString("Y"))} ({tsFormatted})";
     }
 }
 
@@ -60,7 +77,63 @@
             </div>
         </div>
     </div>
+    <div class="ldv-section" id="ldv-section-tools">
+        <header>
+            <h2 class="ldv-other-text-color text-center">Tools</h2>
+            <hr class="ldv-horizontal-divider">
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center font-italic">
+                    <ul>
+                        <li>Visual Studio</li>
+                        <li>C#</li>
+                        <li>Visual Studio Code</li>
+                        <li>Insomnia</li>
+                        <li>Rider</li>
+                        <li>Azure DevOps</li>
+                        <li>Git</li>
+                        <li>GitVersion</li>
+                    </ul>
+                </div>
+                <div class="col text-center font-italic">
+                    <ul>
+                        <li>ASP.NET</li>
+                        <li>Razor Pages</li>
+                        <li>SimpleInjector</li>
+                        <li>Serilog</li>
+                        <li>XUnit</li>
+                        <li>FluentAssertions</li>
+                        <li>Rx.NET</li>
+                        <li>Nuke</li>
+                        <li>Application Insights</li>
+                        <li>Cosmos</li>
+                        <li>Azure Functions</li>
+                        <li>Azure App Configuration</li>
+                    </ul>
+                </div>
+                <div class="col text-center font-italic">
+                    <ul>
+                        <li>Angular</li>
+                        <li>LibMan</li>
+                        <li>JQuery</li>
+                        <li>Yarn</li>
+                        <li>Npm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="ldv-section">
+        <header>
+            <h2 class="ldv-other-text-color text-center">Badges</h2>
+            <hr class="ldv-horizontal-divider">
+        </header>
+        <div class="container d-flex justify-content-center">
+            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b5f36a7b-d616-4dfc-8908-901375c460b1" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
+        </div>
+    </div>
+    <div class="ldv-section" id="ldv-section-timeline">
         <header>
             <h2 class="ldv-other-text-color text-center">Experience</h2>
             <hr class="ldv-horizontal-divider">
@@ -68,43 +141,45 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="main-timeline">
-                        <div class="timeline">
-                            <div class="timeline-content">
-                                <div class="timeline-icon">
-                                    <i class="fa fa-globe"></i>
+                    <div class="timeline">
+                        @{
+                            for (int i = 0; i < Model.Experiences.Count; i++)
+                            {
+                                <div class="timeline-container @(i % 2 == 0 ? "timeline-left" : "timeline-right")">
+                                    <div class="timeline-content">
+                                        <header>
+                                            <h5>@GetExperiencePeriodString(Model.Experiences[i].DateFrom, Model.Experiences[i].DateTo)</h5>
+                                            <p>@Model.Experiences[i].Summary</p>
+                                        </header>
+                                        <ul>
+                                            @{
+                                                foreach (var a in Model.Experiences[i].Accomplishments)
+                                                {
+                                                    <li>@a</li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
                                 </div>
-                                <h3 class="title">Web Designing</h3>
-                                <p class="description">
-                                    <ul>
-                                        <li>Implemented a microservice solution to save the ingestion data into the main short-term database</li>
-                                        <li>Developed a new cost-effective solution to store long-term Big Data</li>
-                                        <li>Designed and implemented a highly parallelized set of Web APIs to query ingestion data from multiple data sources</li>
-                                        <li>Developed a highly performant Web API for the realtime processing of geographical data</li>
-                                        <li>Had a key role in the process of migrating the technology stack of the main short-term ingestion database</li>
-                                        <li>Refactored and partially rewritten an Angular SPA for internal customers used for monitoring the cloud infrastructure</li>
-                                    </ul>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="timeline">
-                            <div class="timeline-content">
-                                <div class="timeline-icon">
-                                    <i class="fa fa-rocket"></i>
-                                </div>
-                                <h3 class="title">Web Development</h3>
-                                <p class="description" >
-                                    <li>MioCondominio: single-handedly rewrote this core business app by converting it from a legacy ASP MPA to a SPA based on Angular 7+ and ASP.NET Core</li>
-                                    <li>Agyo Console: designed and developed a MPA to expose some functionalities of the centralized TeamSystem invoicing platform to the end-users</li>
-                                    <li>Authentication server: built an IdP based on the highest security standards to provide a centralized authentication platform for the different applications</li>
-                                    <li>Domustudio: built the prototype of the next web-based version of the application using React and ASP.NET Core</li>
-                                    <li>Had a critical role in the refactoring of the codebase by separating it into a three layer structure and by rewriting the DAL using Dapper</li>
-                                    <li>Numilia: integrated the application with the Braintree platform</li>
-                                </p>
-                            </div>
-                        </div>
+                            }
+                        }
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="ldv-section" id="ldv-section-now">
+        <header>
+            <h2 class="ldv-other-text-color text-center">Now</h2>
+            <hr class="ldv-horizontal-divider">
+        </header>
+        <div class="container">
+            <div class="text-center">
+                <ul>
+                    <li>Putting up a programming blog...</li>
+                    <li>Working towards the Microsoft 70-486 certification...</li>
+                    <li>Reading: <a href=""></a>Domain-Driven Design: Tackling Complexity in the Heart of Software by Eric Evans...</li>
+                </ul>
             </div>
         </div>
     </div>

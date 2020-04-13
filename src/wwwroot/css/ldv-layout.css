@@ -56,8 +56,21 @@ body {
 }
 
 .ldv-section {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 6rem;
+    padding-bottom: 8rem;
+}
+
+.ldv-section header {
+    margin-bottom: 3rem;
+}
+
+#ldv-section-tools ul {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+#ldv-section-now ul {
+    list-style: none;
 }
 
 .ldv-section:nth-child(even){
