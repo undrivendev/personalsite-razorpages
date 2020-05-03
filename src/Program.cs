@@ -8,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
 namespace Ldv.PersonalSite
 {
@@ -19,9 +18,7 @@ namespace Ldv.PersonalSite
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(
-                    $"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json",
-                    optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json", optional: false, reloadOnChange: false)
                 .Build();
 
             Log.Logger = new LoggerConfiguration()
@@ -48,15 +45,6 @@ namespace Ldv.PersonalSite
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    if (!hostingContext.HostingEnvironment.IsDevelopment())
-                    {
-                        var connString = config.Build()["AppConfigurationConnectionString"];
-                        if (string.IsNullOrWhiteSpace(connString)) {  throw new ArgumentNullException(nameof(connString)); }
-                        config.AddAzureAppConfiguration(connString);
-                    }
-                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

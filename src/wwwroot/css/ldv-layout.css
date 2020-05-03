@@ -77,6 +77,14 @@ body {
     background-color: #EEEEEE;
 }
 
+.ldv-badge-pluralsight {
+    margin-left: 10px;
+}
+
+.ldv-badge-pluralsight img {
+    /*max-width: 250px;*/
+}
+
 .jumbotron {
     position: relative;
     background: url("../img/jumbotron-background.jpg") no-repeat fixed center;

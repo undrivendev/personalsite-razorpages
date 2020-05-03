@@ -37,7 +37,7 @@
     height: 25px;
     right: -12.5px;
     background-color: white;
-    border: 4px solid #FF9F55;
+    border: 4px solid #EEEEEE;
     top: 15px;
     border-radius: 50%;
     z-index: 1;
@@ -117,8 +117,12 @@
     }
 
     /* Make sure all circles are at the same spot */
-    .timeline .timeline-left::after, .timeline-right::after {
-        left: 15px;
+    .timeline .timeline-left::after {
+        left: 17.5px;
+    }
+    
+    .timeline .timeline-right::after {
+        left: 17.5px;
     }
 
     /* Make all right containers behave like the left ones */
