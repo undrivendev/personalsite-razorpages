@@ -1,7 +1,7 @@
 @page "{code:int}"
 @model ErrorModel
 @{
-    ViewData["Title"] = "Error";
+    ViewBag.Title = "Error";
 }
 
 
@@ -15,7 +15,7 @@
         </p>
     }
     <img class="img-fluid" src="@($"https://http.cat/{Model.Code}.jpg")" alt="error image" />
-    <p>It shouldn't happen. Please click <a href="/">here</a> to return in a familiar place and pretend this never happened.</p>
+    <p>This shouldn't happen. Please click <a href="/">here</a> to return to a familiar place and pretend this never happened.</p>
 </div>
 
 
