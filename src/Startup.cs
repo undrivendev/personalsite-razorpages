@@ -25,13 +25,13 @@ namespace Ldv.PersonalSite
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplicationInsightsTelemetry(_configuration);
             if (_environment.IsDevelopment())
             {
                 services.AddRazorPages().AddRazorRuntimeCompilation();
             }
             else
             {
+                services.AddApplicationInsightsTelemetry(_configuration);
                 services.AddRazorPages();
             }
         }
