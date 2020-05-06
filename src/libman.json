@@ -6,7 +6,8 @@
       "library": "popper.js@1.16.1",
       "destination": "wwwroot/lib/popper.js/",
       "files": [
-        "umd/popper.min.js"
+        "umd/popper.min.js",
+        "umd/popper.min.js.map"
       ]
     },
     {
@@ -14,7 +15,9 @@
       "destination": "wwwroot/lib/twitter-bootstrap/",
       "files": [
         "js/bootstrap.min.js",
-        "css/bootstrap.min.css"
+        "js/bootstrap.min.js.map",
+        "css/bootstrap.min.css",
+        "css/bootstrap.min.css.map"
       ]
     },
     {

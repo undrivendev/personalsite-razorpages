@@ -79,11 +79,19 @@ body {
 
 .ldv-badge-pluralsight {
     margin-left: 10px;
+    margin-top: 20px;
 }
 
 .ldv-badge-pluralsight img {
     max-width: 230px;
+}
+
+.ldv-badge-myacclaim {
     margin-top: 20px;
+}
+
+.ldv-badge-myacclaim img {
+    max-width: 150px;
 }
 
 .ldv-badges-pluralsight-row {

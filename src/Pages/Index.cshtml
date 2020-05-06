@@ -35,16 +35,6 @@
         var tsFormatted = m >= 12 ? $"{m / 12} Year{(m / 12 == 1 ? "" : "s")}{(m == 12 ? "" : $" {m % 12} Month{(m % 12 == 1 ? "" : "s")}")}" : $"{m} Month{(m == 1 ? "" : "s")}";
         return $"{from:Y} - {(!to.HasValue ? "Present" : to.Value.ToString("Y"))} ({tsFormatted})";
     }
-
-    IList<string> GetPluralsightBadgesImagesPaths()
-    {
-        var partialPathTemp = System.IO.Path.Combine("img", "pluralsight");
-        var partialPathFull = System.IO.Path.Combine("wwwroot", partialPathTemp);
-        var regex = new Regex($@"{Regex.Escape(partialPathTemp)}.+$");
-        return System.IO.Directory.GetFiles(System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), partialPathFull))
-            .Select((x) => regex.Match(x).Value)
-            .ToList();
-    }
 }
 
 
@@ -119,10 +109,6 @@
                         <li>FluentAssertions</li>
                         <li>Rx.NET</li>
                         <li>Nuke</li>
-                    </ul>
-                </div>
-                <div class="col text-center font-italic">
-                    <ul>
                         <li>CosmosDB</li>
                         <li>Application Insights</li>
                         <li>Azure Functions</li>
@@ -152,25 +138,35 @@
         <div class="container">
 
             <div class="row ldv-badges-acclaim-row">
-                <div class="col-sm d-flex justify-content-center">
-                    <div class="ldv-badge-acclaim" data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b5f36a7b-d616-4dfc-8908-901375c460b1" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
-                </div>
-                <div class="col-sm d-flex justify-content-center">
-                    <div class="ldv-badge-acclaim" data-iframe-width="150" data-iframe-height="270" data-share-badge-id="14c4da1c-8399-4fba-a223-3a844e611d25" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
-                </div>
-                <div class="col-sm d-flex justify-content-center">
-                    <div class="ldv-badge-acclaim" data-iframe-width="150" data-iframe-height="270" data-share-badge-id="a445e5dc-0fb9-4fae-8553-397a74646d2d" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
-                </div>
+                @{
+                    var myAcclaimBadges = new List<(string image, string url)>()
+                    {
+                        ("exam-483.png", @"https://www.youracclaim.com/badges/b5f36a7b-d616-4dfc-8908-901375c460b1/public_url"),
+                        ("exam-486.png", @"https://www.youracclaim.com/badges/14c4da1c-8399-4fba-a223-3a844e611d25/public_url"),
+                        ("mcsa-web.png", @"https://www.youracclaim.com/badges/a445e5dc-0fb9-4fae-8553-397a74646d2d/public_url")
+                    };
+                    foreach (var b in myAcclaimBadges)
+                    {
+                        <div class="col-sm d-flex justify-content-center">
+                            <div class="ldv-badge-myacclaim">
+                                <a href="@b.url" target="_blank">
+                                    <img class="" src="~/img/myacclaim/@b.image" alt="MyAcclaim badge"/>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
 
             <div class="row ldv-badges-pluralsight-row">
                 @{
-                    foreach (var f in GetPluralsightBadgesImagesPaths())
+                    var pluralsightBadgeImages = new List<string>() {"csharp.png", "aspnetcore.png"};
+                    foreach (var b in pluralsightBadgeImages)
                     {
                         <div class="col-sm d-flex justify-content-center">
                             <div class="ldv-badge-pluralsight">
                                 <a href="https://app.pluralsight.com/profile/lucadv91" target="_blank">
-                                    <img class="img-fluid rounded" src="~/@f" alt="Pluralsight badge"/>
+                                    <img class="rounded" src="~/img/pluralsight/@b" alt="Pluralsight badge"/>
                                 </a>
                             </div>
                         </div>
