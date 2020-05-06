@@ -31,9 +31,10 @@ namespace Ldv.PersonalSite
             }
             else
             {
-                services.AddApplicationInsightsTelemetry(_configuration);
                 services.AddRazorPages();
             }
+            
+            services.AddApplicationInsightsTelemetry(_configuration);
         }
 
         public void Configure(IApplicationBuilder app)

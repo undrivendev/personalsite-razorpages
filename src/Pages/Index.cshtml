@@ -1,4 +1,5 @@
 @page
+@using System.Text.RegularExpressions
 @model IndexModel
 @{
     ViewBag.Title = "Luca Dalla Valle - Developer";
@@ -37,10 +38,12 @@
 
     IList<string> GetPluralsightBadgesImagesPaths()
     {
-        var debug = System.IO.Directory.GetFiles(System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot", "img", "pluralsight"))
-            .Select((x) => x.Substring(x.LastIndexOf('/', x.Length - 21) + 1))
+        var partialPathTemp = System.IO.Path.Combine("img", "pluralsight");
+        var partialPathFull = System.IO.Path.Combine("wwwroot", partialPathTemp);
+        var regex = new Regex($@"{Regex.Escape(partialPathTemp)}.+$");
+        return System.IO.Directory.GetFiles(System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), partialPathFull))
+            .Select((x) => regex.Match(x).Value)
             .ToList();
-        return debug;
     }
 }
 
@@ -99,9 +102,11 @@
                         <li>Visual Studio Code</li>
                         <li>Insomnia</li>
                         <li>Rider</li>
-                        <li>Azure DevOps</li>
                         <li>Git</li>
+                        <li>Azure DevOps</li>
                         <li>GitVersion</li>
+                        <li>Postgres</li>
+                        <li>SQL Server</li>
                     </ul>
                 </div>
                 <div class="col text-center font-italic">
@@ -114,10 +119,17 @@
                         <li>FluentAssertions</li>
                         <li>Rx.NET</li>
                         <li>Nuke</li>
+                    </ul>
+                </div>
+                <div class="col text-center font-italic">
+                    <ul>
+                        <li>CosmosDB</li>
                         <li>Application Insights</li>
-                        <li>Cosmos</li>
                         <li>Azure Functions</li>
-                        <li>Azure App Configuration</li>
+                        <li>Azure Key Vault</li>
+                        <li>Event Hub</li>
+                        <li>Azure Storage</li>
+                        <li>Azure Web Apps</li>
                     </ul>
                 </div>
                 <div class="col text-center font-italic">
@@ -137,18 +149,35 @@
             <h2 class="ldv-other-text-color text-center">Badges</h2>
             <hr class="ldv-horizontal-divider">
         </header>
-        <div class="container d-flex justify-content-center">
-            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b5f36a7b-d616-4dfc-8908-901375c460b1" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
-            @{
-                foreach (var f in GetPluralsightBadgesImagesPaths())
-                {
-                    <div class="ldv-badge-pluralsight">
-                        <a href="https://app.pluralsight.com/profile/lucadv91" target="_blank">
-                            <img class="img-fluid rounded" src="~/@f" alt="Pluralsight badge"/>
-                        </a>
-                    </div>
+        <div class="container">
+
+            <div class="row ldv-badges-acclaim-row">
+                <div class="col-sm d-flex justify-content-center">
+                    <div class="ldv-badge-acclaim" data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b5f36a7b-d616-4dfc-8908-901375c460b1" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
+                </div>
+                <div class="col-sm d-flex justify-content-center">
+                    <div class="ldv-badge-acclaim" data-iframe-width="150" data-iframe-height="270" data-share-badge-id="14c4da1c-8399-4fba-a223-3a844e611d25" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
+                </div>
+                <div class="col-sm d-flex justify-content-center">
+                    <div class="ldv-badge-acclaim" data-iframe-width="150" data-iframe-height="270" data-share-badge-id="a445e5dc-0fb9-4fae-8553-397a74646d2d" data-share-badge-host="https://www.youracclaim.com"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
+                </div>
+            </div>
+
+            <div class="row ldv-badges-pluralsight-row">
+                @{
+                    foreach (var f in GetPluralsightBadgesImagesPaths())
+                    {
+                        <div class="col-sm d-flex justify-content-center">
+                            <div class="ldv-badge-pluralsight">
+                                <a href="https://app.pluralsight.com/profile/lucadv91" target="_blank">
+                                    <img class="img-fluid rounded" src="~/@f" alt="Pluralsight badge"/>
+                                </a>
+                            </div>
+                        </div>
+                    }
                 }
-            }
+            </div>
+
         </div>
     </div>
     <div class="ldv-section" id="ldv-section-timeline">
@@ -169,7 +198,9 @@
                                             <span>@GetExperiencePeriodString(Model.Experiences[i].DateFrom, Model.Experiences[i].DateTo)</span>
                                         </header>
                                         <div>
-                                            <h5><b>@Model.Experiences[i].Role at <a href="@(Model.Experiences[i].CompanyUrl)" target="_blank">@(Model.Experiences[i].Company)</a></b></h5>
+                                            <h5>
+                                                <b>@Model.Experiences[i].Role at <a href="@(Model.Experiences[i].CompanyUrl)" target="_blank">@(Model.Experiences[i].Company)</a></b>
+                                            </h5>
                                             <p>
                                                 <i>@Model.Experiences[i].Summary</i>
                                             </p>
@@ -201,7 +232,7 @@
             <div class="text-center">
                 <ul>
                     <li>Putting up a programming blog</li>
-                    <li>Working towards the Microsoft 70-486 certification</li>
+                    <br/>
                     <li>Reading <i>"Domain-Driven Design: Tackling Complexity in the Heart of Software"</i> by Eric Evans</li>
                 </ul>
             </div>

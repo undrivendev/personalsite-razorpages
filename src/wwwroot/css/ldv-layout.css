@@ -82,7 +82,12 @@ body {
 }
 
 .ldv-badge-pluralsight img {
-    /*max-width: 250px;*/
+    max-width: 230px;
+    margin-top: 20px;
+}
+
+.ldv-badges-pluralsight-row {
+    margin-top: 100px;
 }
 
 .jumbotron {
