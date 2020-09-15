@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Personal site",
   "main": "index.js",
-  "repository": "https://gitlab.com/ludaval/personalsite.git",
+  "repository": "https://dev.azure.com/lucadallavalle/Ldv%20Development/_git/Ldv.PersonalSite",
   "author": "Luca Dalla Valle",
   "license": "© 2019 Luca Dalla Valle"
 }
