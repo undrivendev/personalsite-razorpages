@@ -11,20 +11,35 @@ namespace Ldv.PersonalSite.Pages
             {
                 new Experience()
                 {
-                    DateFrom = new DateTime(2019, 5, 1),
+                    DateFrom = new DateTime(2020, 10, 26),
                     DateTo = null,
+                    Company = "ALTEN Switzerland",
+                    Role = "Full Stack Developer",
+                    CompanyUrl = new Uri("https://www.alten.ch"), 
+                    Summary = "Implementing enterprise LOB full-stack solutions using Microsoft technologies.",
+                    Accomplishments = new List<string>()
+                    {
+                        "SwissPost: developed an Angular + ASP.NET Core e-commerce SPA to support delivery services across the entire Swiss territory"
+                    },
+                },
+                new Experience()
+                {
+                    DateFrom = new DateTime(2019, 5, 1),
+                    DateTo = new DateTime(2020, 10, 5),
                     Company = "Texa Spa",
                     Role = "Cloud Solutions Developer",
                     CompanyUrl = new Uri("https://www.texa.com"), 
                     Summary = "Developing Cloud Solutions in C# and .NET Core for Big Data and IoT architectures built on Microsoft Azure.",
                     Accomplishments = new List<string>()
                     {
-                        "Implemented a microservice solution to save the ingestion data into the main short-term database",
                         "Developed a new cost-effective solution to store long-term Big Data",
                         "Designed and implemented a highly parallelized set of Web APIs to query ingestion data from multiple data sources",
+                        "Implemented a microservice solution to save the ingestion data into the main short-term database",
                         "Developed a highly performant Web API for the realtime processing of geographical data",
                         "Had a key role in the process of migrating the technology stack of the main short-term ingestion database",
-                        "Refactored and partially rewritten an Angular SPA for internal customers used for monitoring the cloud infrastructure",
+                        "Rewritten an Angular SPA and realtime monitoring solution for the cloud infrastructure",
+                        "Lead the development of a Blazor SPA for internal customers",
+                        "Built a set of web APIs to perform complex aggregations on Big Data for data analysis purposes",
                     },
                 },
                 new Experience()

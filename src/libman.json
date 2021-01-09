@@ -3,7 +3,7 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "popper.js@1.16.0",
+      "library": "popper.js@1.16.1",
       "destination": "wwwroot/lib/popper.js/",
       "files": [
         "umd/popper.min.js",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "library": "twitter-bootstrap@4.5.2",
+      "library": "twitter-bootstrap@4.5.3",
       "destination": "wwwroot/lib/twitter-bootstrap/",
       "files": [
         "js/bootstrap.min.js",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "library": "font-awesome@5.14.0",
+      "library": "font-awesome@5.15.1",
       "destination": "wwwroot/lib/font-awesome",
       "files": [
         "css/all.min.css",
