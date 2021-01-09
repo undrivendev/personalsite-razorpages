@@ -9,9 +9,9 @@ stages:
         dependsOn: [ ]
         steps:
           - task: UseDotNet@2
-            displayName: "Use .NET Core 3.1.x"
+            displayName: "Use .NET 5.0.x"
             inputs:
-              version: '3.1.x'
+              version: '5.0.x'
               packageType: sdk
           - task: CmdLine@2
             inputs:

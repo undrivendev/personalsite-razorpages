@@ -31,18 +31,18 @@ class Build : NukeBuild
     public static int Main() => Execute<Build>(x => x.Compile);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    readonly string Configuration = IsLocalBuild ? "Debug" : "Release";
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
-    [GitVersion] readonly GitVersion GitVersion;
+    [GitVersion(Framework = "net5.0", NoFetch = true)] readonly GitVersion GitVersion;
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath OutputDirectory => RootDirectory / "output";
     AbsolutePath PublishDirectory => OutputDirectory / "publish";
     AbsolutePath ArtifactsDirectory => OutputDirectory / "artifacts";
 
-    string[] ProjectNames => new string[] {"Ldv.PersonalSite"};
+    string[] ProjectNames => new string[] { "Ldv.PersonalSite" };
 
     Target Clean => _ => _
         .Before(Restore)
@@ -105,12 +105,12 @@ class Build : NukeBuild
             {
                 Directory.CreateDirectory(ArtifactsDirectory / ProjectName);
                 Utils.CreateTarGz(
-                    PublishDirectory / ProjectName, 
-                    ArtifactsDirectory / ProjectName / $"{ProjectName}-{GitVersion.MajorMinorPatch}.tar.gz", 
+                    PublishDirectory / ProjectName,
+                    ArtifactsDirectory / ProjectName / $"{ProjectName}-{GitVersion.MajorMinorPatch}.tar.gz",
                     $"{ProjectName}-{GitVersion.MajorMinorPatch}");
             }
         });
 
-    
+
 }
 
