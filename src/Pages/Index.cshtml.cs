@@ -9,26 +9,26 @@ namespace Ldv.PersonalSite.Pages
         public IList<Experience> Experiences
             => new List<Experience>()
             {
-                new Experience()
+                new Experience
                 {
                     DateFrom = new DateTime(2020, 10, 26),
                     DateTo = null,
                     Company = "ALTEN Switzerland",
                     Role = "Full Stack Developer",
-                    CompanyUrl = new Uri("https://www.alten.ch"), 
+                    CompanyUrl = new Uri("https://www.alten.ch"),
                     Summary = "Implementing enterprise LOB full-stack solutions using Microsoft technologies.",
                     Accomplishments = new List<string>()
                     {
                         "SwissPost: developed an Angular + ASP.NET Core e-commerce SPA to support delivery services across the entire Swiss territory"
                     },
                 },
-                new Experience()
+                new Experience
                 {
                     DateFrom = new DateTime(2019, 5, 1),
                     DateTo = new DateTime(2020, 10, 5),
                     Company = "Texa Spa",
                     Role = "Cloud Solutions Developer",
-                    CompanyUrl = new Uri("https://www.texa.com"), 
+                    CompanyUrl = new Uri("https://www.texa.com"),
                     Summary = "Developing Cloud Solutions in C# and .NET Core for Big Data and IoT architectures built on Microsoft Azure.",
                     Accomplishments = new List<string>()
                     {
@@ -42,13 +42,13 @@ namespace Ldv.PersonalSite.Pages
                         "Built a set of web APIs to perform complex aggregations on Big Data for data analysis purposes",
                     },
                 },
-                new Experience()
+                new Experience
                 {
                     DateFrom = new DateTime(2017, 11, 1),
                     DateTo = new DateTime(2019, 4, 30),
                     Role = "Full Stack Developer",
                     Company = "Danea Soft",
-                    CompanyUrl = new Uri("https://www.danea.it"), 
+                    CompanyUrl = new Uri("https://www.danea.it"),
                     Summary = "Web Development using the Microsoft stack and standard web technologies.",
                     Accomplishments = new List<string>()
                     {
@@ -60,7 +60,7 @@ namespace Ldv.PersonalSite.Pages
                         "Numilia: integrated the application with the Braintree platform",
                     },
                 },
-                new Experience()
+                new Experience
                 {
                     DateFrom = new DateTime(2014, 9, 1),
                     DateTo = new DateTime(2017, 10, 31),
@@ -77,7 +77,7 @@ namespace Ldv.PersonalSite.Pages
                         "OneStore: participated in the development of this new project using .NET Core 1.0, IdentityServer, Angular 4+, C#",
                     },
                 },
-                new Experience()
+                new Experience
                 {
                     DateFrom = new DateTime(2013, 9, 1),
                     DateTo = new DateTime(2014, 8, 31),
@@ -99,10 +99,10 @@ namespace Ldv.PersonalSite.Pages
     {
         public DateTime DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
-        public string Role { get; set; }
-        public string Company { get; set; }
+        public string? Role { get; set; }
+        public string? Company { get; set; }
         public Uri? CompanyUrl { get; set; }
-        public string Summary { get; set; }
-        public List<string> Accomplishments { get; set; }
+        public string? Summary { get; set; }
+        public List<string>? Accomplishments { get; set; }
     }
 }

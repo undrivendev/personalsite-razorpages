@@ -1,8 +1,7 @@
 @page
-@using System.Text.RegularExpressions
 @model IndexModel
 @{
-    ViewBag.Title = "Luca Dalla Valle - Developer";
+    ViewBag.Title = "Luca Dalla Valle - Developer Curriculum";
 }
 
 @{
@@ -42,7 +41,7 @@
     <div class="container">
         <h1 class="display-4">Luca Dalla Valle</h1>
         <hr class="ldv-horizontal-divider">
-        <p class="lead">Welcome to my site</p>
+        <p class="lead">Developer Curriculum</p>
     </div>
     <div class="container-fluid text-center" id="ldv-arrow-container">
         <div class="ldv-arrow ldv-bounce">
@@ -160,7 +159,7 @@
 
             <div class="row ldv-badges-pluralsight-row">
                 @{
-                    var pluralsightBadgeImages = new List<string>() {"csharp.png", "aspnetcore.png"};
+                    var pluralsightBadgeImages = new List<string>() {"csharp.jpg", "aspnetcore.jpg"};
                     foreach (var b in pluralsightBadgeImages)
                     {
                         <div class="col-sm d-flex justify-content-center">
@@ -203,7 +202,7 @@
                                             <br/>
                                             <ul>
                                                 @{
-                                                    foreach (var a in Model.Experiences[i].Accomplishments)
+                                                    foreach (var a in Model.Experiences[i].Accomplishments ?? new List<string>())
                                                     {
                                                         <li>@a</li>
                                                     }
@@ -228,8 +227,6 @@
             <div class="text-center">
                 <ul>
                     <li>Putting up a programming blog</li>
-                    <br/>
-                    <li>Reading <i>"Domain-Driven Design: Tackling Complexity in the Heart of Software"</i> by Eric Evans</li>
                 </ul>
             </div>
         </div>
