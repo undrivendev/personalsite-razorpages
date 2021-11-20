@@ -1,61 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation; 
 
-namespace Ldv.PersonalSite
+namespace Ldv.PersonalSite;
+
+public class Startup
 {
-    public class Startup
+    private readonly IConfiguration _configuration;
+    private readonly IWebHostEnvironment _environment;
+
+    public Startup(IConfiguration configuration, IWebHostEnvironment environment)
     {
-        private readonly IConfiguration _configuration;
-        private readonly IWebHostEnvironment _environment;
+        _configuration = configuration;
+        _environment = environment;
+    }
 
-        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+    public void ConfigureServices(IServiceCollection services)
+    {
+        if (_environment.IsDevelopment())
         {
-            _configuration = configuration;
-            _environment = environment;
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+        }
+        else
+        {
+            services.AddRazorPages();
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        services.AddApplicationInsightsTelemetry(_configuration);
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        if (_environment.IsDevelopment())
         {
-            if (_environment.IsDevelopment())
-            {
-                services.AddRazorPages().AddRazorRuntimeCompilation();
-            }
-            else
-            {
-                services.AddRazorPages();
-            }
-            
-            services.AddApplicationInsightsTelemetry(_configuration);
+            app.UseDeveloperExceptionPage();
+        }
+        else
+        {
+            app.UseExceptionHandler("/Error/500");
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            app.UseHsts();
+            app.UseHttpsRedirection();
         }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            if (_environment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error/500");
-                app.UseStatusCodePagesWithReExecute("/Error/{0}");;
-                app.UseHsts();
-                app.UseHttpsRedirection();
-            }
+        app.UseStaticFiles();
+        app.UseRouting();
+        app.UseAuthorization();
 
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
-        }
+        app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
     }
 }

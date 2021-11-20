@@ -92,6 +92,7 @@
     background-color: white;
     position: relative;
     border-radius: 6px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 30px 60px -12px, rgba(0, 0, 0, 0.3) 0 18px 36px -18px;
 }
 
 .timeline .timeline-content ul {
@@ -124,7 +125,7 @@
     .timeline .timeline-left::after {
         left: 17.5px;
     }
-    
+
     .timeline .timeline-right::after {
         left: 17.5px;
     }

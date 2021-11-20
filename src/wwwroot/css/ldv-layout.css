@@ -75,8 +75,12 @@ body {
     list-style: none;
 }
 
-.ldv-section:nth-child(even){
+.ldv-section:nth-child(even) {
     background-color: #EEEEEE;
+}
+
+.ldv-badge {
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
 }
 
 .ldv-badge-pluralsight {
@@ -90,6 +94,7 @@ body {
 
 .ldv-badge-myacclaim {
     margin-top: 20px;
+    border-radius: 50%;
 }
 
 .ldv-badge-myacclaim img {

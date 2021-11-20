@@ -147,7 +147,7 @@
                     foreach (var b in myAcclaimBadges)
                     {
                         <div class="col-sm d-flex justify-content-center">
-                            <div class="ldv-badge-myacclaim">
+                            <div class="ldv-badge ldv-badge-myacclaim">
                                 <a href="@b.url" target="_blank">
                                     <img class="" src="~/img/myacclaim/@b.image" alt="MyAcclaim badge"/>
                                 </a>
@@ -163,7 +163,7 @@
                     foreach (var b in pluralsightBadgeImages)
                     {
                         <div class="col-sm d-flex justify-content-center">
-                            <div class="ldv-badge-pluralsight">
+                            <div class="ldv-badge ldv-badge-pluralsight">
                                 <a href="https://app.pluralsight.com/profile/lucadallavalle" target="_blank">
                                     <img class="rounded" src="~/img/pluralsight/@b" alt="Pluralsight badge"/>
                                 </a>
@@ -184,7 +184,7 @@
                 <div class="col-md-12">
                     <div class="timeline">
                         @{
-                            for (int i = 0; i < Model.Experiences.Count; i++)
+                            for (var i = 0; i < Model.Experiences.Count; i++)
                             {
                                 <div class="timeline-container @(i % 2 == 0 ? "timeline-left" : "timeline-right")">
                                     <div class="timeline-content">
