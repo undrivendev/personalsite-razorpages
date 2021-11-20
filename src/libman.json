@@ -11,7 +11,7 @@
       ]
     },
     {
-      "library": "twitter-bootstrap@4.6.0",
+      "library": "twitter-bootstrap@5.1.3",
       "destination": "wwwroot/lib/twitter-bootstrap/",
       "files": [
         "js/bootstrap.min.js",
@@ -19,14 +19,14 @@
       ]
     },
     {
-      "library": "jquery@3.5.1",
+      "library": "jquery@3.6.0",
       "destination": "wwwroot/lib/jquery",
       "files": [
         "jquery.min.js"
       ]
     },
     {
-      "library": "font-awesome@5.15.1",
+      "library": "font-awesome@5.15.4",
       "destination": "wwwroot/lib/font-awesome",
       "files": [
         "css/all.min.css",

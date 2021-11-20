@@ -53,6 +53,8 @@ body {
 
 .ldv-horizontal-divider {
     max-width: 36%;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .ldv-section {

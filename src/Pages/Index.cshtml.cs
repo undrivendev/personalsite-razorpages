@@ -9,27 +9,30 @@ namespace Ldv.PersonalSite.Pages
         public IList<Experience> Experiences
             => new List<Experience>()
             {
-                new Experience
+                new()
                 {
                     DateFrom = new DateTime(2020, 10, 26),
                     DateTo = null,
                     Company = "ALTEN Switzerland",
                     Role = "Full Stack Developer",
                     CompanyUrl = new Uri("https://www.alten.ch"),
-                    Summary = "Implementing enterprise LOB full-stack solutions using Microsoft technologies.",
+                    Summary =
+                        "Developing Full-Stack solutions for the Swiss national postal service in Angular and .NET Core.",
                     Accomplishments = new List<string>()
                     {
-                        "SwissPost: developed an Angular + ASP.NET Core e-commerce SPA to support delivery services across the entire Swiss territory"
+                        "SwissPost: developed a backoffice SPA for internal customers to manage the order lifecycle of a suite of core business products offered to the enterprise customers and post offices of the whole country",
+                        "SwissPost: developed a public-facing e-commerce SPA to place the orders of core business products targeted at the enterprise customers",
                     },
                 },
-                new Experience
+                new()
                 {
                     DateFrom = new DateTime(2019, 5, 1),
                     DateTo = new DateTime(2020, 10, 5),
                     Company = "Texa Spa",
                     Role = "Cloud Solutions Developer",
                     CompanyUrl = new Uri("https://www.texa.com"),
-                    Summary = "Developing Cloud Solutions in C# and .NET Core for Big Data and IoT architectures built on Microsoft Azure.",
+                    Summary =
+                        "Developing Cloud Solutions in C# and .NET Core for Big Data and IoT architectures built on Microsoft Azure.",
                     Accomplishments = new List<string>()
                     {
                         "Developed a new cost-effective solution to store long-term Big Data",
@@ -42,7 +45,7 @@ namespace Ldv.PersonalSite.Pages
                         "Built a set of web APIs to perform complex aggregations on Big Data for data analysis purposes",
                     },
                 },
-                new Experience
+                new()
                 {
                     DateFrom = new DateTime(2017, 11, 1),
                     DateTo = new DateTime(2019, 4, 30),
@@ -60,14 +63,15 @@ namespace Ldv.PersonalSite.Pages
                         "Numilia: integrated the application with the Braintree platform",
                     },
                 },
-                new Experience
+                new()
                 {
                     DateFrom = new DateTime(2014, 9, 1),
                     DateTo = new DateTime(2017, 10, 31),
                     Role = "Developer",
                     Company = "Maxima srl",
                     CompanyUrl = new Uri("https://www.linkedin.com/company/maxima-s.r.l.l./"),
-                    Summary = "Customer support, development using VB6, SQL Server, VB.NET, C# and ASP.NET. Light project management.",
+                    Summary =
+                        "Customer support, development using VB6, SQL Server, VB.NET, C# and ASP.NET. Light project management.",
                     Accomplishments = new List<string>()
                     {
                         "Learnt VB6",
@@ -77,7 +81,7 @@ namespace Ldv.PersonalSite.Pages
                         "OneStore: participated in the development of this new project using .NET Core 1.0, IdentityServer, Angular 4+, C#",
                     },
                 },
-                new Experience
+                new()
                 {
                     DateFrom = new DateTime(2013, 9, 1),
                     DateTo = new DateTime(2014, 8, 31),
