@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Ldv.PersonalSite.Pages;
 
 public class IndexModel : PageModel
 {
+    
     public IList<Experience> Experiences
         => new List<Experience>
         {
@@ -97,6 +96,7 @@ public class IndexModel : PageModel
                 },
             },
         };
+    
 }
 
 public class Experience

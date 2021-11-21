@@ -1,53 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Serilog;
+﻿using Serilog;
 
-namespace Ldv.PersonalSite;
 
-public class Program
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
+        optional: false, reloadOnChange: false)
+    .Build();
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(configuration)
+    .CreateLogger();
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
+
+// Add services to the container.
+builder.Services.AddRazorPages();
+builder.Services.AddApplicationInsightsTelemetry(builder.Configuration);
+
+// configure HTTP pipeline.
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-     
-    public static int Main(string[] args)
-    {
-        var configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production"}.json", optional: false, reloadOnChange: false)
-            .Build();
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Error/500");
+    app.UseStatusCodePagesWithReExecute("/Error/{0}");
+    app.UseHsts();
+    app.UseHttpsRedirection();
+}
 
-        Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
-            .CreateLogger();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
 
-        try
-        {
-            Log.Information("Starting web host");
-            CreateHostBuilder(args).Build().Run();
-            return 0;
-        }
-        catch (Exception ex)
-        {
-            Log.Fatal(ex, "Host terminated unexpectedly");
-            return 1;
-        }
-        finally
-        {
-            Log.CloseAndFlush();
-        }
-            
-    }
+app.MapRazorPages();
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            })
-            .UseSerilog();
+try
+{
+    Log.Information("Starting web host");
+    app.Run();
+    return 0;
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Host terminated unexpectedly");
+    return 1;
+}
+finally
+{
+    Log.CloseAndFlush();
 }
